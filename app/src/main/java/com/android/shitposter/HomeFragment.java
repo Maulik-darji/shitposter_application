@@ -139,18 +139,18 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
             LinearGradient gradient = new LinearGradient(
                 offset, height + offset, width + offset, -offset,
-                new int[]{0x00FFFFFF, 0xCCFFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0xCCFFFFFF, 0x00FFFFFF},
+                new int[]{0x00FFFFFF, 0xFFFFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0xFFFFFFFF, 0x00FFFFFF},
                 new float[]{0.0f, 0.15f, 0.3f, 0.5f, 0.7f, 0.85f, 1.0f},
                 Shader.TileMode.CLAMP
             );
 
-            float radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
+            float radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
             float[] outerR = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
             
             ShapeDrawable shape = new ShapeDrawable(new RoundRectShape(outerR, null, null));
             shape.getPaint().setShader(gradient);
             shape.getPaint().setStyle(Paint.Style.STROKE);
-            shape.getPaint().setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics()));
+            shape.getPaint().setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
             
             binding.fabShine.setBackground(shape);
         });

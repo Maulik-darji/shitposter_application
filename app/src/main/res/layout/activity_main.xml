@@ -58,7 +58,6 @@
             android:id="@+id/navShine"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
             android:background="@drawable/bg_gyro_shine_border"
             android:alpha="0.8" />
 
