@@ -105,15 +105,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float height = binding.navShine.getHeight();
             if (width == 0) return;
 
-            // Map tilt to -width to +width for the gradient travel
-            float normalizedTilt = (xTilt + 7f) / 14f; 
+            // Map tilt to a wider, smoother range
+            float range = 40f;
+            float normalizedTilt = (xTilt + (range/2f)) / range; 
             normalizedTilt = Math.max(0, Math.min(1, 1 - normalizedTilt)); 
-            float centerX = normalizedTilt * width;
+            
+            float offset = (normalizedTilt * 200) - 100; // Small movement offset
 
+            // Diagonal gradient for top-right and bottom-left focus
             LinearGradient gradient = new LinearGradient(
-                centerX - 100, 0, centerX + 100, 0,
-                new int[]{0x00FFFFFF, 0x80FFFFFF, 0x00FFFFFF},
-                null, Shader.TileMode.CLAMP
+                offset, height + offset, width + offset, -offset,
+                new int[]{0x00FFFFFF, 0x80FFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0x80FFFFFF, 0x00FFFFFF},
+                new float[]{0.0f, 0.15f, 0.3f, 0.5f, 0.7f, 0.85f, 1.0f},
+                Shader.TileMode.CLAMP
             );
 
             // 32dp corner radius roughly
