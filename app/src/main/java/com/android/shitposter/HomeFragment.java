@@ -131,18 +131,25 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             float height = binding.fabShine.getHeight();
             if (width == 0) return;
 
-            float range = 40f;
+            // Set range to 14f (-7 to +7 m/s^2) for true physical limits of phone tilt
+            float range = 14f;
             float normalizedTilt = (xTilt + (range/2f)) / range; 
             normalizedTilt = Math.max(0, Math.min(1, 1 - normalizedTilt)); 
-            
-            float offset = (normalizedTilt * 200) - 100;
 
             LinearGradient gradient = new LinearGradient(
-                offset, height + offset, width + offset, -offset,
+                0, height, width, 0,
                 new int[]{0x00FFFFFF, 0xFFFFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0x00FFFFFF, 0xFFFFFFFF, 0x00FFFFFF},
                 new float[]{0.0f, 0.15f, 0.3f, 0.5f, 0.7f, 0.85f, 1.0f},
                 Shader.TileMode.CLAMP
             );
+
+            // Map physical tilt to sweep across the view using Matrix hardware translation
+            float span = width * 1.5f;
+            float translateX = (normalizedTilt * span) - (span * 0.25f);
+            
+            android.graphics.Matrix matrix = new android.graphics.Matrix();
+            matrix.setTranslate(translateX, 0);
+            gradient.setLocalMatrix(matrix);
 
             float radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
             float[] outerR = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
