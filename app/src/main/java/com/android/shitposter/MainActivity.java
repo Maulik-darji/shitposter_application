@@ -135,20 +135,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void updateIndicatorX(int itemId, boolean animate) {
         binding.bottomNav.post(() -> {
-            int index = 0;
+            int index = -1;
             int count = binding.bottomNav.getMenu().size();
-            if (count == 0) return;
-
             for (int i = 0; i < count; i++) {
                 if (binding.bottomNav.getMenu().getItem(i).getItemId() == itemId) {
                     index = i;
                     break;
                 }
             }
+            if (index == -1) return;
 
-            float navWidth = binding.bottomNav.getWidth();
-            float tabWidth = navWidth / count;
-            float targetX = (tabWidth * index) + (tabWidth / 2f) - (binding.navIndicator.getWidth() / 2f);
+            android.view.View menuView = binding.bottomNav.getChildAt(0);
+            if (!(menuView instanceof android.view.ViewGroup)) return;
+            
+            android.view.View itemView = ((android.view.ViewGroup) menuView).getChildAt(index);
+            if (itemView == null) return;
+
+            // Strict coordinate symmetry: Align center of indicator to exact center of icon view
+            float targetX = itemView.getX() + (itemView.getWidth() / 2f) - (binding.navIndicator.getWidth() / 2f);
 
             if (animate) {
                 binding.navIndicator.animate()
