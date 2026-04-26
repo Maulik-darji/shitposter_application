@@ -64,7 +64,7 @@
         <!-- Custom Sliding Indicator -->
         <View
             android:id="@+id/navIndicator"
-            android:layout_width="56dp"
+            android:layout_width="48dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/bg_nav_indicator" />
@@ -77,10 +77,11 @@
             android:hapticFeedbackEnabled="true"
             app:itemActiveIndicatorStyle="@null"
             app:itemRippleColor="@android:color/transparent"
+            app:itemBackground="@android:color/transparent"
             app:itemIconTint="@color/nav_item_colors"
             app:itemTextColor="@color/nav_item_colors"
             app:itemPaddingBottom="0dp"
-            app:itemPaddingTop="8dp"
+            app:itemPaddingTop="12dp"
             app:itemIconSize="26dp"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/menu_bottom_nav" />
