@@ -1,0 +1,36 @@
+# Gradle files
+.gradle/
+.gradle-user-home/
+build/
+app/build/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sensitive files
+local.properties
+google-services.json
+*.jks
+*.keystore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Android Specific
+captures/
+.externalNativeBuild
+.cxx/
+/local.properties
+/captures/
+.navigation/
+
+# Log files
+*.log
+
+# Backup files
+*.bak
+*.swp

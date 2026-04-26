@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Shitposter</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="skip">Skip</string>
+    <string name="skip_for_now">Skip for now</string>
+    <string name="get_started">Get started</string>
+    <string name="or">or</string>
+    <string name="log_in">Log in</string>
+    <string name="terms">Terms</string>
+    <string name="privacy_policy">Privacy Policy</string>
+
+    <string name="onboarding_title_1">One-stop destination</string>
+    <string name="onboarding_desc_1">Everything you need for shitposting in one place.</string>
+
+    <string name="onboarding_title_2">Create. Share. Repeat.</string>
+    <string name="onboarding_desc_2">Post faster, stay consistent, and keep your feed chaotic.</string>
+
+    <string name="onboarding_title_3">Earn from shitposting</string>
+    <string name="onboarding_desc_3">Turn your shitposts into income by tracking growth and monetizing your content.</string>
+
+    <string name="auth_headline">See what’s people shitting.</string>
+    <string name="continue_with_phone">Continue with phone number</string>
+    <string name="create_account">Create account</string>
+    <string name="have_account">Have an account already?</string>
+    <string name="auth_legal_text">By signing up, you agree to our Terms and Privacy Policy.</string>
+
+    <string name="phone_auth_title_login">Log in with phone</string>
+    <string name="phone_auth_title_signup">Create your account</string>
+    <string name="phone_number">Phone number</string>
+    <string name="otp_code">OTP code</string>
+    <string name="continue_button">Continue</string>
+    <string name="verify_button">Verify</string>
+    <string name="enter_otp_hint">Enter the 6-digit code</string>
+    <string name="enter_phone_hint">Enter your phone number</string>
+    <string name="invalid_phone">Enter a valid phone number</string>
+    <string name="invalid_otp">Enter a valid OTP</string>
+
+    <string name="terms_title">Terms</string>
+    <string name="privacy_title">Privacy Policy</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_ai">AI</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_chat">Chat</string>
+
+    <string name="tab_for_you">For you</string>
+    <string name="tab_following">Following</string>
+
+    <string name="new_post">New post</string>
+    <string name="post">Post</string>
+    <string name="whats_happening">What’s happening?</string>
+
+    <string name="like">Like</string>
+    <string name="repost">Repost</string>
+    <string name="comment">Comment</string>
+    <string name="analytics">Analytics</string>
+    <string name="save">Save</string>
+    <string name="share">Share</string>
+    <string name="comments_count">Comments (%1$d)</string>
+    <string name="add_comment">Add a comment…</string>
+    <string name="send">Send</string>
+</resources>
