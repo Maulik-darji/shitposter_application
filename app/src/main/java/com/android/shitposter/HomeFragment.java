@@ -144,13 +144,13 @@ public class HomeFragment extends Fragment implements SensorEventListener {
                 Shader.TileMode.CLAMP
             );
 
-            float radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
+            float radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
             float[] outerR = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
             
             ShapeDrawable shape = new ShapeDrawable(new RoundRectShape(outerR, null, null));
             shape.getPaint().setShader(gradient);
             shape.getPaint().setStyle(Paint.Style.STROKE);
-            shape.getPaint().setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
+            shape.getPaint().setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics()));
             
             binding.fabShine.setBackground(shape);
         });

@@ -120,14 +120,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Shader.TileMode.CLAMP
             );
 
-            // 32dp corner radius roughly
-            float radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
+            // 30dp corner radius matches the inset dimensions exactly for a perfect pill
+            float radius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
             float[] outerR = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
             
             ShapeDrawable shape = new ShapeDrawable(new RoundRectShape(outerR, null, null));
             shape.getPaint().setShader(gradient);
             shape.getPaint().setStyle(Paint.Style.STROKE);
-            shape.getPaint().setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
+            shape.getPaint().setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics()));
             
             binding.navShine.setBackground(shape);
         });
