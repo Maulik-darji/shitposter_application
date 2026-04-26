@@ -11,37 +11,46 @@
         </shape>
     </item>
     
-    <!-- Base dark smoked glass fill -->
-    <item>
+    <!-- Drop shadow / Outer bevel -->
+    <item android:top="3dp" android:left="1dp" android:right="1dp">
         <shape android:shape="rectangle">
-            <!-- 40% Black for a dark, light-absorbing glassy look -->
-            <solid android:color="#66000000" />
+            <solid android:color="#99000000" />
             <corners android:radius="32dp" />
-            <!-- Crisp outer glass reflection -->
-            <stroke
-                android:width="1dp"
-                android:color="#40FFFFFF" />
         </shape>
     </item>
 
-    <!-- Top glossy curve (Simulating overhead light reflection) -->
-    <item android:bottom="32dp" android:left="1dp" android:right="1dp" android:top="1dp">
+    <!-- Base dark smoked glass fill -->
+    <item android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <!-- 50% Black -->
+            <solid android:color="#80000000" />
+            <corners android:radius="32dp" />
+            <!-- Darker, subtler outer reflection -->
+            <stroke
+                android:width="1.5dp"
+                android:color="#1AFFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Top glossy curve (Simulating strong overhead light) -->
+    <item android:bottom="32dp" android:left="2dp" android:right="2dp" android:top="2dp">
         <shape android:shape="rectangle">
             <gradient
                 android:angle="270"
                 android:endColor="#00FFFFFF"
-                android:startColor="#1AFFFFFF" />
+                android:startColor="#26FFFFFF" />
             <corners
-                android:topLeftRadius="31dp"
-                android:topRightRadius="31dp" />
+                android:topLeftRadius="30dp"
+                android:topRightRadius="30dp" />
         </shape>
     </item>
 
-    <!-- Bottom rim light (Light catching the bottom edge) -->
-    <item android:top="62dp" android:left="24dp" android:right="24dp" android:bottom="0dp">
+    <!-- Bottom inner 3D bevel rim -->
+    <item android:top="60dp" android:left="16dp" android:right="16dp" android:bottom="1dp">
         <shape android:shape="rectangle">
-            <solid android:color="#26FFFFFF" />
+            <solid android:color="#33000000" />
             <corners android:radius="1dp" />
         </shape>
     </item>
 </layer-list>
+

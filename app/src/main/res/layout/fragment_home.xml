@@ -31,6 +31,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="16dp"
+        android:elevation="24dp"
         android:background="@drawable/bg_liquid_glass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

@@ -47,6 +47,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:elevation="24dp"
         android:background="@drawable/bg_liquid_glass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +64,7 @@
         <!-- Custom Sliding Indicator -->
         <View
             android:id="@+id/navIndicator"
-            android:layout_width="48dp"
+            android:layout_width="72dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/bg_nav_indicator" />
