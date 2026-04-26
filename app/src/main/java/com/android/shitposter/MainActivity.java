@@ -87,11 +87,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    private float smoothedXTilt = 0f;
+
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            float xTilt = event.values[0]; // -10 to 10 approx
-            updateGyroShine(xTilt);
+            float rawXTilt = event.values[0];
+
+            // Apply Low-Pass Filter: heavily dampens high-frequency jitter/shake
+            // An alpha of 0.1 gives a smooth, delayed, "heavy liquid" feel.
+            float alpha = 0.1f;
+            smoothedXTilt = smoothedXTilt + alpha * (rawXTilt - smoothedXTilt);
+
+            updateGyroShine(smoothedXTilt);
         }
     }
 

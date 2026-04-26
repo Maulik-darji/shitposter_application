@@ -111,11 +111,19 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         }
     }
 
+    private float smoothedXTilt = 0f;
+
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            float xTilt = event.values[0];
-            updateFabShine(xTilt);
+            float rawXTilt = event.values[0];
+            
+            // LPF (Low-Pass Filter) creates a weighted rolling average.
+            // Alpha of 0.1f filters out jittery micro-movements, leaving a fluid heavy shine.
+            float alpha = 0.1f;
+            smoothedXTilt = smoothedXTilt + alpha * (rawXTilt - smoothedXTilt);
+            
+            updateFabShine(smoothedXTilt);
         }
     }
 
