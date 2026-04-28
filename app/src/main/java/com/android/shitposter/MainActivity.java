@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private ActivityMainBinding binding;
     private SensorManager sensorManager;
     private Sensor accelerometer;
+    private static final float INDICATOR_WIDTH_RATIO = 1.15f;
+    private static final float NAV_CONTENT_OFFSET_DP = 6f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Indicator must never occlude nav items/touches.
+        binding.navIndicator.setClickable(false);
+        binding.navIndicator.setFocusable(false);
+        binding.navIndicator.setElevation(-1f);
+        binding.navIndicator.setTranslationZ(-1f);
+        binding.navShine.setElevation(-2f);
+        binding.navShine.setTranslationZ(-2f);
+
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         if (sensorManager != null) {
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         }
 
         WindowInsetsHelper.applyTopInsetsPadding(binding.toolbar);
+        binding.bottomNav.post(this::applyBottomNavContentOffset);
 
         if (savedInstanceState == null) {
             openRootFragment(new HomeFragment());
@@ -160,25 +171,71 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
             if (index == -1) return;
 
-            android.view.View menuView = binding.bottomNav.getChildAt(0);
-            if (!(menuView instanceof android.view.ViewGroup)) return;
-            
-            android.view.View itemView = ((android.view.ViewGroup) menuView).getChildAt(index);
+            android.view.ViewGroup menuView = binding.bottomNav.getMenuViewGroup();
+            if (menuView == null) return;
+
+            android.view.View itemView = menuView.getChildAt(index);
             if (itemView == null) return;
 
-            // Strict coordinate symmetry: Align center of indicator to exact center of icon view
-            float targetX = itemView.getX() + (itemView.getWidth() / 2f) - (binding.navIndicator.getWidth() / 2f);
+            android.view.View iconView = itemView.findViewById(com.google.android.material.R.id.navigation_bar_item_icon_view);
+
+            // Increase indicator width slightly (15% more than item) for a bold but stable look
+            int itemWidth = itemView.getWidth();
+            int indicatorWidth = (int) (itemWidth * 1.15f);
+
+            android.view.ViewGroup.LayoutParams params = binding.navIndicator.getLayoutParams();
+            if (params.width != indicatorWidth) {
+                params.width = indicatorWidth;
+                binding.navIndicator.setLayoutParams(params);
+            }
+
+            int[] containerLoc = new int[2];
+            binding.bottomNavContainer.getLocationOnScreen(containerLoc);
+
+            int[] anchorLoc = new int[2];
+            // Compensate translation so the wider indicator remains perfectly centered
+            float centeringOffset = (indicatorWidth - itemWidth) / 2f;
+            android.view.View anchorView = (iconView != null) ? iconView : itemView;
+            anchorView.getLocationOnScreen(anchorLoc);
+
+            float anchorCenterXOnScreen = anchorLoc[0] + (anchorView.getWidth() / 2f);
+            float desiredIndicatorLeftInContainer = anchorCenterXOnScreen - containerLoc[0] - (indicatorWidth / 2f);
+            float targetTranslationX = desiredIndicatorLeftInContainer - binding.navIndicator.getLeft();
+
+            float anchorCenterYOnScreen = anchorLoc[1] + (anchorView.getHeight() / 2f);
+            float indicatorDownShiftPx = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    1f,
+                    getResources().getDisplayMetrics()
+            );
+            float desiredIndicatorTopInContainer =
+                    (anchorCenterYOnScreen - containerLoc[1]) - (binding.navIndicator.getHeight() / 2f) + indicatorDownShiftPx;
+            float targetTranslationY = desiredIndicatorTopInContainer - binding.navIndicator.getTop();
 
             if (animate) {
                 binding.navIndicator.animate()
-                        .translationX(targetX)
+                        .translationX(targetTranslationX)
+                        .translationY(targetTranslationY)
                         .setDuration(250)
                         .setInterpolator(new AccelerateDecelerateInterpolator())
                         .start();
             } else {
-                binding.navIndicator.setTranslationX(targetX);
+                binding.navIndicator.setTranslationX(targetTranslationX);
+                binding.navIndicator.setTranslationY(targetTranslationY);
             }
         });
+    }
+
+    private void applyBottomNavContentOffset() {
+        android.view.ViewGroup menuView = binding.bottomNav.getMenuViewGroup();
+        if (menuView == null) return;
+
+        float offsetPx = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                NAV_CONTENT_OFFSET_DP,
+                getResources().getDisplayMetrics()
+        );
+        menuView.setTranslationY(offsetPx);
     }
 
     private void openRootFragment(Fragment fragment) {

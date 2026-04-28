@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_nav_home_selector"
+        android:icon="@drawable/home_24"
         android:title="@string/nav_home" />
     <item
         android:id="@+id/nav_search"
@@ -9,14 +9,14 @@
         android:title="@string/nav_search" />
     <item
         android:id="@+id/nav_ai"
-        android:icon="@drawable/ic_nav_ai_selector"
+        android:icon="@drawable/borg_24"
         android:title="@string/nav_ai" />
     <item
         android:id="@+id/nav_notifications"
-        android:icon="@drawable/ic_nav_notifications_selector"
+        android:icon="@drawable/ic_nav_notifications_outline"
         android:title="@string/nav_notifications" />
     <item
         android:id="@+id/nav_chat"
-        android:icon="@drawable/ic_nav_chat_selector"
+        android:icon="@drawable/ic_nav_chat_outline"
         android:title="@string/nav_chat" />
 </menu>

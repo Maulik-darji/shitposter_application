@@ -35,7 +35,7 @@
         android:id="@+id/mainContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -65,7 +65,7 @@
         <View
             android:id="@+id/navIndicator"
             android:layout_width="72dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/bg_nav_indicator" />
 
@@ -73,6 +73,7 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
             android:background="@android:color/transparent"
             android:hapticFeedbackEnabled="true"
             app:itemActiveIndicatorStyle="@null"
@@ -80,8 +81,8 @@
             app:itemBackground="@android:color/transparent"
             app:itemIconTint="@color/nav_item_colors"
             app:itemTextColor="@color/nav_item_colors"
-            app:itemPaddingBottom="0dp"
-            app:itemPaddingTop="0dp"
+            app:itemPaddingTop="12dp"
+            app:itemPaddingBottom="12dp"
             app:itemIconSize="26dp"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/menu_bottom_nav" />
